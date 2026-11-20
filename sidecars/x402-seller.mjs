@@ -8,7 +8,9 @@ import { HTTPFacilitatorClient } from "@x402/core/server";
 import { getAddress } from "viem";
 
 const NETWORK = "eip155:42220";
-const USDC = getAddress("0xcebA9300f2b948710d2653dD7B07f33A8B32118C");
+// USDT didukung facilitator Celo (eip3009). Kita punya saldo USDT, USDC nol.
+const ASSET = getAddress("0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e");
+const ASSET_EXTRA = { name: "Tether USD", version: "1" };
 
 const key = process.env.X402_API_KEY;
 const payToRaw = process.env.SELLER_PAY_TO || process.env.PAYOUT_ADDRESS;
@@ -37,9 +39,9 @@ const routes = {
         network: NETWORK,
         payTo,
         price: {
-          amount: process.env.X402_PRICE || "10000", // $0.01, 6 decimals
-          asset: USDC,
-          extra: { name: "USDC", version: "2" },
+          amount: process.env.X402_PRICE || "10000", // $0.10 default, 6 decimals
+          asset: ASSET,
+          extra: ASSET_EXTRA,
         },
       },
     ],

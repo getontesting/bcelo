@@ -13,7 +13,9 @@ function env(name: string, fallback = ""): string {
   return (process.env[name] || fallback).trim();
 }
 
-const adminKey = env("ALTANA_ADMIN_PRIVATE_KEY") as Hex;
+let adminKeyRaw = env("ALTANA_ADMIN_PRIVATE_KEY");
+if (adminKeyRaw && !adminKeyRaw.startsWith("0x")) adminKeyRaw = "0x" + adminKeyRaw;
+const adminKey = adminKeyRaw as Hex;
 const callTo = env("ALTANA_CALL_TO");
 const callData = env("ALTANA_CALL_DATA") as Hex;
 if (!adminKey) throw new Error("ALTANA_ADMIN_PRIVATE_KEY belum diisi");

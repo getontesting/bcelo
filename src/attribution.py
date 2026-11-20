@@ -21,7 +21,9 @@ SCHEMA_ROLE = 2
 _CODE_RE = re.compile(r"^[a-z0-9_]{1,32}$")
 
 
-def strip_0x(value: str) -> str:
+def strip_0x(value: str | bytes) -> str:
+    if isinstance(value, (bytes, bytearray)):
+        return bytes(value).hex()
     return value[2:] if value.lower().startswith("0x") else value
 
 

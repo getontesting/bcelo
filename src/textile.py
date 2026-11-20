@@ -90,7 +90,10 @@ class TextileClient:
             else:
                 raise TextileError(f"401 dari Textile: {res.text[:300]}")
 
-        res.raise_for_status()
+        if not res.is_success:
+            raise TextileError(
+                f"HTTP {res.status_code} dari /rfq/request: {res.text[:1000]}"
+            )
         data = res.json().get("data", {})
         if data.get("status") == "no_quote":
             raise TextileError(

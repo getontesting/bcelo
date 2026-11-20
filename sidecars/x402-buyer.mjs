@@ -11,11 +11,13 @@ if (!url) {
   process.exit(2);
 }
 
-const key = process.env.BUYER_PRIVATE_KEY;
+let key = (process.env.BUYER_PRIVATE_KEY || "").trim();
 if (!key) throw new Error("BUYER_PRIVATE_KEY belum diisi");
+if (!key.startsWith("0x")) key = "0x" + key; // .env kita simpan tanpa prefix
 
 const NETWORK = "eip155:42220"; // Celo mainnet
 const USDC = getAddress("0xcebA9300f2b948710d2653dD7B07f33A8B32118C");
+const USDT = getAddress("0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e");
 
 const account = privateKeyToAccount(key);
 const client = new x402Client();
@@ -25,8 +27,13 @@ client.setSpendControls({
   allowedAssets: [
     {
       network: NETWORK,
-      asset: USDC,
+      asset: USDT,
       maxAmountPerPayment: process.env.X402_MAX_AMOUNT || "100000", // $0.10
+    },
+    {
+      network: NETWORK,
+      asset: USDC,
+      maxAmountPerPayment: process.env.X402_MAX_AMOUNT || "100000",
     },
   ],
   maxAmountPerPayment: process.env.X402_MAX_USD || "$1",

@@ -247,9 +247,17 @@ def main() -> None:
         settings = Settings.from_env()
         w3 = Web3(HTTPProvider(settings.rpc_url))
         account = w3.eth.account.from_key(settings.private_key)
-        agent_id = erc8004.agent_id_for_owner(w3, account.address)
-        print(f"owner  : {account.address}")
-        print(f"agentId: {agent_id if agent_id is not None else 'BELUM ADA'}")
+        raw_id = os.getenv("AGENT_ID", "").strip()
+        if raw_id.isdigit():
+            agent_id = int(raw_id)
+            owner = erc8004.agent_owner(w3, agent_id)
+            print(f"agentId: {agent_id}")
+            print(f"owner  : {owner}")
+            print(f"cocok dengan wallet agent: {owner.lower() == account.address.lower()}")
+        else:
+            agent_id = erc8004.agent_id_for_owner(w3, account.address)
+            print(f"owner  : {account.address}")
+            print(f"agentId: {agent_id if agent_id is not None else 'BELUM ADA'}")
         return
 
     if args.command == "register-agent":

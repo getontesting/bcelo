@@ -63,7 +63,7 @@ def send_tagged(
     }
     tx["gas"] = w3.eth.estimate_gas(tx)
     base_fee = w3.eth.get_block("latest")["baseFeePerGas"]
-    tip = w3.eth.to_wei(1, "gwei")
+    tip = Web3.to_wei(1, "gwei")
     tx["maxPriorityFeePerGas"] = tip
     tx["maxFeePerGas"] = base_fee * 2 + tip
 

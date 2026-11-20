@@ -40,6 +40,13 @@ ABI: list[dict[str, Any]] = [
     },
     {
         "type": "function",
+        "name": "ownerOf",
+        "stateMutability": "view",
+        "inputs": [{"name": "tokenId", "type": "uint256"}],
+        "outputs": [{"name": "", "type": "address"}],
+    },
+    {
+        "type": "function",
         "name": "tokenOfOwnerByIndex",
         "stateMutability": "view",
         "inputs": [
@@ -103,12 +110,20 @@ def _contract(w3: Web3):
     return w3.eth.contract(address=to_checksum_address(IDENTITY_REGISTRY), abi=ABI)
 
 
+def agent_owner(w3: Web3, agent_id: int) -> str:
+    return _contract(w3).functions.ownerOf(agent_id).call()
+
+
 def agent_id_for_owner(w3: Web3, owner: str) -> int | None:
     c = _contract(w3)
     count = c.functions.balanceOf(to_checksum_address(owner)).call()
     if count == 0:
         return None
-    return int(c.functions.tokenOfOwnerByIndex(to_checksum_address(owner), 0).call())
+    try:
+        return int(c.functions.tokenOfOwnerByIndex(to_checksum_address(owner), 0).call())
+    except Exception:
+        # Kontrak tidak selalu mengimplementasikan ERC-721Enumerable.
+        return None
 
 
 def register(
