@@ -26,6 +26,7 @@ class AltanaResult:
     status: str
     tx_hash: str
     revoked: bool
+    fund_hash: str | None = None
 
 
 def run(
@@ -42,7 +43,7 @@ def run(
     dry_run: bool = False,
 ) -> AltanaResult | None:
     if not allowed_contracts:
-        allowed_contracts = [TOKENS["USDC"]]
+        allowed_contracts = [to]
 
     tagged = append_tag(calldata, [attribution_code])
     if dry_run:
@@ -78,13 +79,16 @@ def run(
         timeout=300,
     )
     if proc.returncode != 0:
-        raise RuntimeError(f"Altana sidecar gagal: {proc.stderr[-2000:]}")
+        if proc.stdout:
+            print(f"[STDOUT] {proc.stdout[-2000:]}")
+        raise RuntimeError(f"Altana sidecar gagal: {proc.stderr[-3000:]}")
     data = json.loads(proc.stdout)
     return AltanaResult(
         wallet=data["wallet"],
         status=str(data["status"]),
         tx_hash=data["txHash"],
         revoked=bool(data["revoked"]),
+        fund_hash=data.get("fundHash"),
     )
 
 

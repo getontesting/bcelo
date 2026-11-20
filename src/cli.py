@@ -224,8 +224,8 @@ def main() -> None:
             recipient = "0x1111111111111111111111111111111111111111"
         amount = int(os.getenv("ALTANA_TRANSFER_AMOUNT", "1000000"))
         result = run_altana(
-            to=TOKENS["USDC"],
-            calldata=transfer_calldata(TOKENS["USDC"], recipient, amount),
+            to=TOKENS["USDT"],
+            calldata=transfer_calldata(TOKENS["USDT"], recipient, amount),
             recipient=recipient,
             amount=amount,
             attribution_code=code,

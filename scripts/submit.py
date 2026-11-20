@@ -31,8 +31,14 @@ BASE = [
     "--demo-url", "https://github.com/getontesting/bcelo",
     "--logo", str(ROOT / "assets" / "logo.png"),
     "--screenshot", str(ROOT / "assets" / "verified-activity.png"),
-    "--bounty-ids", "7527f91b-899a-484b-a87f-5314e21bb45d",
-    "--bounty-ids", "4379f770-3b52-4bb9-93cf-a2853765658f",
+    "--bounty-ids", "7527f91b-899a-484b-a87f-5314e21bb45d",  # Stablecoin 1st
+    "--bounty-ids", "2cc35384-b522-46f8-906d-e02afd62b1bf",  # Stablecoin 2nd
+    "--bounty-ids", "08ad9cde-13cd-4d3c-a92c-104758a2bff1",  # Stablecoin 3rd
+    "--bounty-ids", "4379f770-3b52-4bb9-93cf-a2853765658f",  # Agent Vault 1st
+    "--bounty-ids", "ddee9cee-4065-43cd-a43b-c74aa9b55e74",  # Agent Vault 2nd
+    "--bounty-ids", "8e75a6d8-8da4-483d-82bf-2274df0356f0",  # Altana 1st
+    "--bounty-ids", "ab7df96f-e99d-45f7-ac41-fc9d7473af83",  # Altana 2nd
+    "--bounty-ids", "d7be31a0-9388-48bc-9943-1d32c697cb69",  # Altana product review (XP)
     "--answer", "Agent wallet=" + PAY,
     "--answer", "Team contacts=getontesting, getontesting@gmail.com",
     "--answer", "Payout wallet on Celo=" + PAY,
@@ -46,6 +52,10 @@ BASE = [
     "--answer", "x402 PayTo address=SELLER_PAY_TO di .env (dompet seller terpisah)",
     "--answer", "Stablecoin Corridors track details=USDT->IDRX via Textile FX; swap 0xfadc5702...; payout ke 0x6cd38edd... = 0x85c03b3a...; semua bertag celo_69fe50f9aa63",
     "--answer", "Agent Vault: Online & Onchain Checkouts track details=x402 tx 0xf72b3bf1... blok 83290930, $0.10 USDT",
+    "--answer",
+    "Altana Agent Wallets track details=Product review: https://github.com/getontesting/bcelo/issues/1. "
+    "grantSession di Celo mainnet gagal di relay (RPC Request failed, code 3, data 0x) walau wallet sudah di-danai USDT + CELO; "
+    "policy yang disiapkan: spend cap 1 USDT/hari, allowlist USDT, expiry 24 jam, revoke otomatis.",
     "--answer", "Founder and/or Project Handles on X=https://x.com/CryptoBits03",
     "--answer", "Follow @Celo and @CeloDevs on X=yes, following both @Celo and @CeloDevs",
 ]
