@@ -91,9 +91,10 @@ python -m src.cli verify 0x...           # cek tag sebuah tx
 
 ## Status on-chain (Celo mainnet, terverifikasi)
 - ERC-8004 **agentId 10077**, owner = wallet agent
-- Attribution tag `celo_624f9418a842` — terverifikasi di tx registrasi
-- Track 1: swap Textile FX USDT→IDRX `0xc9733ab20c59c7629a4357dfcddbb47c4c5282fc32dacc56d323fda7338076e0`,
-  payout `0xc7fa464678206c5d6bcb756acd2a55b1b4ad5881c770808f852800840d827578`
+- Attribution tag **`celo_69fe50f9aa63`** — kode yang diasign platform Loops
+  (bukan kode self-derived; cek dengan `loops project get`)
+- Track 1: swap Textile FX USDT→IDRX `0xfadc5702d58a64c048b56316ad7731692305bd951544517479815833e2b2f955`,
+  payout ke user eksternal `0x85c03b3ad8ca8f72e0bc94ad0eb3c60a518efe238ae76e5f4f5ec11268520474`
 - Track 2: x402 $0.10 USDT `0xf72b3bf1d7a6ce96b2c29b9b0dafb528ba0c5b0db8e425a6a9aba6f0eb29cd1e`
   (blok 83290930)
 - Submission draft: `python scripts/submit.py`, kirim dengan `--video-url ... --confirm`

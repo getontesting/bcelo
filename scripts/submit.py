@@ -23,8 +23,9 @@ BASE = [
     "--description",
     "Agent Celo mainnet: konversi USDT ke IDRX via Textile FX RFQ lalu bayar penerima "
     "dengan attribution tag di setiap transaksi; plus x402 per-request pakai USDT. "
-    "Bukti: ERC-8004 agentId 10077, tag celo_624f9418a842, swap 0xc9733ab20c59c7629a4357dfcddbb47c4c5282fc32dacc56d323fda7338076e0, "
-    "payout 0xc7fa464678206c5d6bcb756acd2a55b1b4ad5881c770808f852800840d827578, "
+    "Bukti: ERC-8004 agentId 10077, attribution tag celo_69fe50f9aa63 (tag resmi platform), "
+    "swap 0xfadc5702d58a64c048b56316ad7731692305bd951544517479815833e2b2f955, "
+    "payout IDRX ke user eksternal 0x85c03b3ad8ca8f72e0bc94ad0eb3c60a518efe238ae76e5f4f5ec11268520474, "
     "x402 0xf72b3bf1d7a6ce96b2c29b9b0dafb528ba0c5b0db8e425a6a9aba6f0eb29cd1e blok 83290930.",
     "--repo-url", "https://github.com/getontesting/bcelo",
     "--demo-url", "https://github.com/getontesting/bcelo",
@@ -37,12 +38,13 @@ BASE = [
     "--answer", "Payout wallet on Celo=" + PAY,
     "--answer", "ERC-8004 agent ID=10077",
     "--answer", "Self Agent ID (mainnet agentId)=not registered - no supported passport",
-    "--answer", "Attribution tag=celo_624f9418a842",
+    "--answer", "Attribution tag=celo_69fe50f9aa63",
     "--answer",
-    "Named user=Penerima uji IDRX 0x9D7801B3aA68be61B8ff888a91f038D00b1E6A01; "
-    "pekerjaan: pembayaran jasa/supplier dalam IDRX. Data sementara, akan diganti user bernama.",
+    "Named user=M RIFKI TRI ADITYA, Jl Sinyal Gunung Gajah, freelance web3 developer "
+    "dan airdrop enthusiast. Penerima pembayaran IDRX: 0x6cd38eddeb7c0972a93056e20b8e1b11eb141eef "
+    "(wallet di luar tim).",
     "--answer", "x402 PayTo address=SELLER_PAY_TO di .env (dompet seller terpisah)",
-    "--answer", "Stablecoin Corridors track details=USDT->IDRX via Textile FX; swap 0xc9733ab2...; payout 0xc7fa4646...",
+    "--answer", "Stablecoin Corridors track details=USDT->IDRX via Textile FX; swap 0xfadc5702...; payout ke 0x6cd38edd... = 0x85c03b3a...; semua bertag celo_69fe50f9aa63",
     "--answer", "Agent Vault: Online & Onchain Checkouts track details=x402 tx 0xf72b3bf1... blok 83290930, $0.10 USDT",
     "--answer", "Founder and/or Project Handles on X=https://x.com/CryptoBits03",
     "--answer", "Follow @Celo and @CeloDevs on X=yes, following both @Celo and @CeloDevs",
