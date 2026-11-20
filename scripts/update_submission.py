@@ -28,6 +28,8 @@ for bounty in BOUNTIES:
 
 BASE += [
     "--answer",
+    "Public X post=https://x.com/CryptoBits03/status/2123859111054029181",
+    "--answer",
     "Stablecoin Corridors track details=Wallet 0x2Ff10a4748902E82E82835Edef6d98c306e4ba38. "
     "Koridor: USDT->IDRX dan USDT->cNGN via Textile FX RFQ di Celo mainnet. "
     "3 putaran konversi bertag celo_69fe50f9aa63, masing-masing approval+swap+payout: "
