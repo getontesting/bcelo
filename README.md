@@ -55,10 +55,10 @@ python -m src.cli verify 0x...           # cek tag sebuah tx
   sebagai `data:` URI di calldata, jadi tidak perlu hosting; `register-agent`
   otomatis mengisi `registrations.agentId` lalu memanggil `setAgentURI`.
 - **`sidecars/x402-buyer.mjs`** — buyer resmi `@x402/fetch` v2. Tidak
-  hand-assemble payload 402. Default asset USDC Celo mainnet, spend control
+  hand-assemble payload 402. Asset USDT & USDC Celo mainnet, spend control
   eksplisit (`$1` / `100000` atomic).
 - **`sidecars/x402-seller.mjs`** — seller resmi `@x402/hono` v2. Endpoint
-  `GET /premium` dihargai $0.01–$0.10 USDC, difasilitasi `api.x402.celo.org`.
+  `GET /premium` dihargai $0.10 USDT, difasilitasi `api.x402.celo.org`.
   Diperlukan `X402_API_KEY` (buat di x402.celo.org dengan GitHub sign-in untuk
   credit mainnet). Ini memberi kita endpoint berbayar nyata untuk Track 2.
 - **`sidecars/altana-agent-wallet.ts`** — SDK `@altananetwork/sdk` dengan chain
@@ -89,5 +89,14 @@ python -m src.cli verify 0x...           # cek tag sebuah tx
   `BUYER_PRIVATE_KEY` (berisi USDC Celo) untuk x402
 - Track 4: `ALTANA_ADMIN_PRIVATE_KEY` (admin wallet milik orang, bukan agent)
 
-Belum ada transaksi nyata yang dijalankan — semua siap dieksekusi setelah `.env`
-diisi dan kode enrollment diketahui.
+## Status on-chain (Celo mainnet, terverifikasi)
+- ERC-8004 **agentId 10077**, owner = wallet agent
+- Attribution tag `celo_624f9418a842` — terverifikasi di tx registrasi
+- Track 1: swap Textile FX USDT→IDRX `0xc9733ab20c59c7629a4357dfcddbb47c4c5282fc32dacc56d323fda7338076e0`,
+  payout `0xc7fa464678206c5d6bcb756acd2a55b1b4ad5881c770808f852800840d827578`
+- Track 2: x402 $0.10 USDT `0xf72b3bf1d7a6ce96b2c29b9b0dafb528ba0c5b0db8e425a6a9aba6f0eb29cd1e`
+  (blok 83290930)
+- Submission draft: `python scripts/submit.py`, kirim dengan `--video-url ... --confirm`
+
+Track 4 (Altana) belum sukses: relay menolak dengan `RPC Request failed`.
+Self Agent ID tidak diikuti (tidak ada dokumen yang didukung).
