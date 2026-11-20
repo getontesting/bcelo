@@ -186,7 +186,7 @@ def main() -> None:
         return
 
     if args.command == "signin":
-        sign_in(
+        result = sign_in(
             url=os.getenv("AGENTVAULT_SIGNIN_URL", ""),
             username_selector=os.getenv(
                 "AGENTVAULT_USERNAME_SELECTOR", "input[type='email']"
@@ -202,6 +202,11 @@ def main() -> None:
             success_selector=os.getenv("AGENTVAULT_SUCCESS_SELECTOR", "#dashboard"),
             dry_run=args.dry_run,
         )
+        if result:
+            print(f"session : {result.session}")
+            print(f"fill    : {result.fill[:400]}")
+            print(f"outcome : {result.outcome[:600]}")
+            print(f"observe : {result.observed[:1200]}")
         return
 
     if args.command == "x402-seller":

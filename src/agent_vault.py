@@ -25,6 +25,7 @@ class SignInResult:
     fill: str
     outcome: str
     report: str
+    observed: str = ""
 
 
 def _text(result) -> str:
@@ -119,10 +120,13 @@ async def _run(args: dict, *, dry_run: bool) -> SignInResult | None:
                 },
                 handle,
             )
+            observed = await _call(session, "observe_page", {}, handle)
             report = await _call(session, "get_run_report", {}, handle)
             await _call(session, "close_session", {}, handle)
 
-            return SignInResult(handle or "", catalog, fill, outcome, report)
+            return SignInResult(
+                handle or "", catalog, fill, outcome, report, observed
+            )
 
 
 def list_tokens() -> str:

@@ -36,6 +36,14 @@ BASE += [
     "IDRX swap 0x6f2b41dba7ff712c4c0b985c7b4447533afaf638c932add92bb6412cac3ba59d payout 0xcce959b492afc755fa1b66f2b9f3516c2ed5b39b4b3f88728def4164b997cb30. "
     "Semua payout ke user eksternal 0x6cd38eddeb7c0972a93056e20b8e1b11eb141eef.",
     "--answer",
+    "Agent Vault: Online & Onchain Checkouts track details="
+    "Agent Vault MCP (API key) dipakai untuk sign-in ke https://github.com/login "
+    "dengan mock token av_login_github_username/password — agent tidak pernah melihat password asli. "
+    "Bukti: fill_login filled=2/2, observe_page status=ok reason='accountControl; looks signed in'. "
+    "Pembayaran onchain lewat x402: tx 0xf72b3bf1d7a6ce96b2c29b9b0dafb528ba0c5b0db8e425a6a9aba6f0eb29cd1e "
+    "blok 83290930, $0.10 USDT. Spending rule: kartu tidak dipakai (test card), "
+    "x402 dibatasi $1/payment lewat spendControls.",
+    "--answer",
     "Altana Agent Wallets track details="
     "Wallet (passkey, non-custodial): 0xBf39b7f2211128b5148d45eA28b4052349d2aBe0. "
     "Aktivasi onchain: 0x36f126e4a9f23aec7d7f96c9b48b477641efe25d7bbab26c4ca63a45cf163384 "
