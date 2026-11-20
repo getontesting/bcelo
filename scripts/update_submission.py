@@ -28,6 +28,14 @@ for bounty in BOUNTIES:
 
 BASE += [
     "--answer",
+    "Stablecoin Corridors track details=Wallet 0x2Ff10a4748902E82E82835Edef6d98c306e4ba38. "
+    "Koridor: USDT->IDRX dan USDT->cNGN via Textile FX RFQ di Celo mainnet. "
+    "3 putaran konversi bertag celo_69fe50f9aa63, masing-masing approval+swap+payout: "
+    "IDRX swap 0xfadc5702d58a64c048b56316ad7731692305bd951544517479815833e2b2f955 payout 0x85c03b3ad8ca8f72e0bc94ad0eb3c60a518efe238ae76e5f4f5ec11268520474; "
+    "cNGN swap 0xf127380e1ced32795356a7a790ec02189f46c05f5464ed178ade8b821aca9bf5 payout 0xbf43879aa64748a5e618815cf3c3ed4461936eaa83653212da3806c08ebdb938; "
+    "IDRX swap 0x6f2b41dba7ff712c4c0b985c7b4447533afaf638c932add92bb6412cac3ba59d payout 0xcce959b492afc755fa1b66f2b9f3516c2ed5b39b4b3f88728def4164b997cb30. "
+    "Semua payout ke user eksternal 0x6cd38eddeb7c0972a93056e20b8e1b11eb141eef.",
+    "--answer",
     "Altana Agent Wallets track details="
     "Wallet (passkey, non-custodial): 0xBf39b7f2211128b5148d45eA28b4052349d2aBe0. "
     "Aktivasi onchain: 0x36f126e4a9f23aec7d7f96c9b48b477641efe25d7bbab26c4ca63a45cf163384 "
