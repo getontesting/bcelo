@@ -27,6 +27,7 @@ class AltanaResult:
     tx_hash: str
     revoked: bool
     fund_hash: str | None = None
+    activation_hash: str | None = None
 
 
 def run(
@@ -37,7 +38,7 @@ def run(
     amount: int,
     attribution_code: str,
     allowed_contracts: list[str] | None = None,
-    spend_limit: int = 1_000_000,
+    spend_limit: int = 10**15,
     expiry_seconds: int = 86_400,
     revoke: bool = True,
     dry_run: bool = False,
@@ -65,6 +66,7 @@ def run(
                 to_checksum_address(c) for c in allowed_contracts
             ),
             "ALTANA_SPEND_LIMIT": str(spend_limit),
+            "ALTANA_FUND_AMOUNT": os.getenv("ALTANA_FUND_AMOUNT", "0"),
             "ALTANA_EXPIRY_SECONDS": str(expiry_seconds),
             "ALTANA_REVOKE": "1" if revoke else "0",
         }
@@ -89,6 +91,7 @@ def run(
         tx_hash=data["txHash"],
         revoked=bool(data["revoked"]),
         fund_hash=data.get("fundHash"),
+        activation_hash=data.get("activationHash"),
     )
 
 

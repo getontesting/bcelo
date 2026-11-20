@@ -6,6 +6,7 @@ import {
   CELO,
   signerFromPrivateKey,
   createPrivateKeySigner,
+  NATIVE_TOKEN,
 } from "@altananetwork/sdk";
 import {
   getAddress,
@@ -76,7 +77,7 @@ if (balance < fundAmount) {
 
 // Fee relay Altana dibayar dari wallet Altana dalam native CELO.
 const nativeBalance = await publicClient.getBalance({ address: wallet.address });
-const nativeNeed = parseUnits(env("ALTANA_FUND_CELO", "0.02"), 18);
+const nativeNeed = parseUnits(env("ALTANA_FUND_CELO", "0.2"), 18);
 if (nativeBalance < nativeNeed) {
   const h = await publicClient.sendTransaction({
     account: adminAccount,
@@ -86,6 +87,17 @@ if (nativeBalance < nativeNeed) {
   });
   await publicClient.waitForTransactionReceipt({ hash: h });
 }
+
+// Wallet counterfactual harus diaktifkan dulu lewat execute pertama.
+// Ini yang register admin key onchain — tanpa ini grantSession ditolak relay.
+const activation = await client.execute({
+  wallet,
+  signer: admin,
+  calls: { to: wallet.address, value: 0n },
+  feeToken: NATIVE_TOKEN,
+  // Kita sudah punya ERC-8004 agentId 10077 — jangan bayar registrasi kedua.
+  agentIdentity: false,
+});
 
 const session = await client.grantSession({
   wallet,
@@ -103,16 +115,23 @@ const session = await client.grantSession({
   expiry:
     Math.floor(Date.now() / 1000) +
     Number(env("ALTANA_EXPIRY_SECONDS", "86400")),
+  feeToken: NATIVE_TOKEN,
 });
 
 const result = await client.execute({
   session,
   calls: [{ to: getAddress(callTo), data: callData, value: 0n }],
+  feeToken: NATIVE_TOKEN,
 });
 
 let revoked = false;
 if (env("ALTANA_REVOKE", "1") === "1") {
-  await client.revokeSession({ wallet, signer: admin, session });
+  await client.revokeSession({
+    wallet,
+    signer: admin,
+    session,
+    feeToken: NATIVE_TOKEN,
+  });
   revoked = true;
 }
 
@@ -120,6 +139,7 @@ console.log(
   JSON.stringify({
     wallet: wallet.address,
     fundHash,
+    activationHash: activation.transactionHash,
     status: result.status,
     txHash: result.transactionHash,
     revoked,

@@ -28,11 +28,14 @@ for bounty in BOUNTIES:
 
 BASE += [
     "--answer",
-    "Altana Agent Wallets track details=Product review: "
-    "https://github.com/getontesting/bcelo/issues/1. "
-    "Policy disiapkan: spend cap 1 USDT/hari, allowlist USDT, expiry 24 jam, "
-    "revoke otomatis. grantSession di Celo mainnet gagal di relay "
-    "(RPC Request failed, code 3, data 0x) walau wallet sudah di-danai USDT + CELO.",
+    "Altana Agent Wallets track details="
+    "Wallet (passkey, non-custodial): 0xBf39b7f2211128b5148d45eA28b4052349d2aBe0. "
+    "Aktivasi onchain: 0x36f126e4a9f23aec7d7f96c9b48b477641efe25d7bbab26c4ca63a45cf163384 "
+    "(blok 83294878, status sukses). "
+    "Session key terdaftar di Keystore: 0xffa9945f8e0c23a9abb9a33b015858d0cedd1ee0fe2bc13d341e0b9e83985eaf. "
+    "Policy: spend cap 0.001 CELO/hari, allowlist hanya wallet ini, expiry 1 jam, "
+    "dapat dicabut dalam satu transaksi. "
+    "Produk review: https://github.com/getontesting/bcelo/issues/1.",
 ]
 
 
