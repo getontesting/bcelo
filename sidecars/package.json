@@ -1,0 +1,20 @@
+{
+  "name": "bcelo-sidecars",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "x402": "node x402-buyer.mjs",
+    "x402-seller": "node x402-seller.mjs",
+    "altana": "bun run altana-agent-wallet.ts"
+  },
+  "dependencies": {
+    "@altananetwork/sdk": "latest",
+    "@hono/node-server": "latest",
+    "@x402/core": "latest",
+    "@x402/evm": "latest",
+    "@x402/fetch": "latest",
+    "@x402/hono": "latest",
+    "hono": "latest",
+    "viem": "latest"
+  }
+}
