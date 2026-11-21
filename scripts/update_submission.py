@@ -30,12 +30,20 @@ BASE += [
     "--answer",
     "Public X post=https://x.com/CryptoBits03/status/2123859111054029181",
     "--answer",
+    "buy transaction hashes="
+    "0xaa6b2919729b0f695bf1dab2b2789f50e578984e12a98d0a8092a62081fc2f21 — "
+    "paid call $0.01 USDT from agent to Chainstack Celo JSON-RPC via gateway.usebuy.ai, "
+    "returned eth_chainId=0xa4ec (42220). Real third-party service, no Self proof required.",
+    "--answer",
     "Stablecoin Corridors track details=Wallet 0x2Ff10a4748902E82E82835Edef6d98c306e4ba38. "
-    "Koridor: USDT->IDRX dan USDT->cNGN via Textile FX RFQ di Celo mainnet. "
-    "3 putaran konversi bertag celo_69fe50f9aa63, masing-masing approval+swap+payout: "
-    "IDRX swap 0xfadc5702d58a64c048b56316ad7731692305bd951544517479815833e2b2f955 payout 0x85c03b3ad8ca8f72e0bc94ad0eb3c60a518efe238ae76e5f4f5ec11268520474; "
-    "cNGN swap 0xf127380e1ced32795356a7a790ec02189f46c05f5464ed178ade8b821aca9bf5 payout 0xbf43879aa64748a5e618815cf3c3ed4461936eaa83653212da3806c08ebdb938; "
-    "IDRX swap 0x6f2b41dba7ff712c4c0b985c7b4447533afaf638c932add92bb6412cac3ba59d payout 0xcce959b492afc755fa1b66f2b9f3516c2ed5b39b4b3f88728def4164b997cb30. "
+    "5 koridor aktif via Textile FX RFQ di Celo mainnet: USDT->IDRX (2x), USDT->cNGN, "
+    "USDT->wBRL, USDT->wCOP. 5 putaran, 15 transaksi bertag celo_69fe50f9aa63 "
+    "(approval+swap+payout). Swap/payout: "
+    "IDRX 0xfadc5702.../0x85c03b3a..., "
+    "cNGN 0xf127380e.../0xbf43879a..., "
+    "IDRX 0x6f2b41db.../0xcce959b4..., "
+    "wBRL 0xf8e9207a.../0x3988bf05..., "
+    "wCOP 0x8d0af125.../0x24023a7b.... "
     "Semua payout ke user eksternal 0x6cd38eddeb7c0972a93056e20b8e1b11eb141eef.",
     "--answer",
     "Agent Vault: Online & Onchain Checkouts track details="
@@ -43,7 +51,10 @@ BASE += [
     "dengan mock token av_login_github_username/password — agent tidak pernah melihat password asli. "
     "Bukti: fill_login filled=2/2, observe_page status=ok reason='accountControl; looks signed in'. "
     "Pembayaran onchain lewat x402: tx 0xf72b3bf1d7a6ce96b2c29b9b0dafb528ba0c5b0db8e425a6a9aba6f0eb29cd1e "
-    "blok 83290930, $0.10 USDT. Spending rule: kartu tidak dipakai (test card), "
+    "blok 83290930, $0.10 USDT ke /premium seller lokal. "
+    "REAL USE: paid call ke layanan pihak ketiga di usebuy.ai (Chainstack Celo RPC) "
+    "tx 0xaa6b2919729b0f695bf1dab2b2789f50e578984e12a98d0a8092a62081fc2f21, $0.01 USDT, "
+    "response eth_chainId=0xa4ec. Spending rule: kartu tidak dipakai (test card), "
     "x402 dibatasi $1/payment lewat spendControls.",
     "--answer",
     "Altana Agent Wallets track details="

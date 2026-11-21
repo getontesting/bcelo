@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "accounts": [
+    {
+      "name": "agent",
+      "address": "0x2Ff10a4748902E82E82835Edef6d98c306e4ba38",
+      "network": "mainnet",
+      "createdAt": "2026-11-21T06:32:43.704Z",
+      "source": "imported"
+    }
+  ],
+  "default": "agent"
+}

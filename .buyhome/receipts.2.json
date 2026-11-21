@@ -1,0 +1,39 @@
+[
+  {
+    "account": "agent",
+    "url": "https://gateway.usebuy.ai/v1/social/x/posts/search",
+    "network": "celo",
+    "asset": "0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e",
+    "amount": "5000",
+    "scheme": "exact",
+    "outcome": "ambiguous",
+    "status": 502,
+    "authorization": {
+      "from": "0x2Ff10a4748902E82E82835Edef6d98c306e4ba38",
+      "nonce": "0x228e2a83b3f6c4f0442f12f7c1855ec94c76be30ec905b195b023c8468032582",
+      "validAfter": "0",
+      "validBefore": "1795243106"
+    },
+    "timestamp": "2026-11-21T06:33:31.374Z",
+    "id": "mwq17uni-f65s1oa3"
+  },
+  {
+    "account": "agent",
+    "url": "https://gateway.usebuy.ai/chainstack/celo",
+    "network": "celo",
+    "asset": "0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e",
+    "amount": "10000",
+    "scheme": "exact",
+    "outcome": "confirmed",
+    "status": 200,
+    "txHash": "0xaa6b2919729b0f695bf1dab2b2789f50e578984e12a98d0a8092a62081fc2f21",
+    "authorization": {
+      "from": "0x2Ff10a4748902E82E82835Edef6d98c306e4ba38",
+      "nonce": "0xd3fe172b47b5728913a906d9de9d0d09d363547651cba2980aed121de6a2a44c",
+      "validAfter": "0",
+      "validBefore": "1795243314"
+    },
+    "timestamp": "2026-11-21T06:40:58.476Z",
+    "id": "mwq1hfn1-m1p7afcp"
+  }
+]

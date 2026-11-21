@@ -12,15 +12,18 @@ Named user: **M RIFKI TRI ADITYA**, Jl Sinyal Gunung Gajah, freelance web3 devel
 and airdrop enthusiast. Recipient wallet (outside team, not pre-funded):
 `0x6cd38eddeb7c0972a93056e20b8e1b11eb141eef`.
 
-Three rounds, each approval + swap + payout, all tagged `celo_69fe50f9aa63`:
+Five rounds across **five corridors** via Textile FX RFQ, each approval + swap + payout,
+all tagged `celo_69fe50f9aa63` (15 tagged transactions):
 
 | Corridor | Swap tx | Payout tx |
 |---|---|---|
 | USDT → IDRX | `0xfadc5702d58a64c048b56316ad7731692305bd951544517479815833e2b2f955` | `0x85c03b3ad8ca8f72e0bc94ad0eb3c60a518efe238ae76e5f4f5ec11268520474` |
 | USDT → cNGN | `0xf127380e1ced32795356a7a790ec02189f46c05f5464ed178ade8b821aca9bf5` | `0xbf43879aa64748a5e618815cf3c3ed4461936eaa83653212da3806c08ebdb938` |
 | USDT → IDRX | `0x6f2b41dba7ff712c4c0b985c7b4447533afaf638c932add92bb6412cac3ba59d` | `0xcce959b492afc755fa1b66f2b9f3516c2ed5b39b4b3f88728def4164b997cb30` |
+| USDT → wBRL | `0xf8e9207a93cf741bad9fcc1cda9722ae598f3e7b2cf8ce3e98695cd5e82cafc1` | `0x3988bf050c9f2c758a22e5709f9fa66395ee661e30e5f124e36cf4f0e89c4e59` |
+| USDT → wCOP | `0x8d0af125a286d961412a08b20c1d7f2d1bc79c2f9c5a0e904fa138fdcb110731` | `0x24023a7b2c519283bbb89caf9e02914b3bc95d2726fad91dae43a704ac961a76` |
 
-Approval txs: `0xc61631e1...`, `0x048a9864...`, `0xf1c545ca...`
+Other approval txs: `0xc61631e1`, `0x048a9864`, `0xf1c545ca`, `0x4e915916`, `0x22c42a53`.
 Verify any tag with: `python -m src.cli verify <tx>`
 
 ## Track 2 — Agent Vault + x402
@@ -29,6 +32,10 @@ Verify any tag with: `python -m src.cli verify <tx>`
   The agent never saw the real password.
 - x402 payment: `0xf72b3bf1d7a6ce96b2c29b9b0dafb528ba0c5b0db8e425a6a9aba6f0eb29cd1e`
   (block 83290930), $0.10 USDT via the hosted Celo facilitator.
+- **Real third-party use on `buy`:** `buy curl` paid $0.01 USDT for Chainstack Celo
+  JSON-RPC through `gateway.usebuy.ai` — settlement tx
+  `0xaa6b2919729b0f695bf1dab2b2789f50e578984e12a98d0a8092a62081fc2f21`,
+  response `eth_chainId = 0xa4ec` (42220).
 - Spend controls: $1/payment cap; test card only, no real card checkout.
 - Public X post with @selfxyz @Celo and demo clip: see link above.
 
