@@ -131,15 +131,19 @@ def main() -> None:
     sub.add_parser("registry", help="cek agent ID ERC-8004 untuk wallet agent")
 
     register = sub.add_parser(
-        "register-agent", help="daftarkan identitas ERC-8004 di Celo mainnet"
+        "register-agent", help="daftarkan / perbarui identitas ERC-8004 di Celo mainnet"
     )
-    register.add_argument("--name", default="Loops Business Agent")
+    register.add_argument("--name", default=os.getenv("AGENT_NAME", "Celo Corridor Agent"))
     register.add_argument(
         "--description",
-        default="Agent that pays local stablecoin suppliers via Textile FX on Celo",
+        default=os.getenv(
+            "AGENT_DESCRIPTION",
+            "Agent that pays local stablecoin suppliers via Textile FX and "
+            "settles paid API requests over x402 on Celo mainnet",
+        ),
     )
     register.add_argument(
-        "--endpoint", default="https://github.com/owner/repo"
+        "--endpoint", default=os.getenv("AGENT_ENDPOINT", "https://github.com/getontesting/bcelo")
     )
 
     args = parser.parse_args()
@@ -269,24 +273,26 @@ def main() -> None:
         settings = Settings.from_env()
         w3 = Web3(HTTPProvider(settings.rpc_url))
         account = w3.eth.account.from_key(settings.private_key)
-        existing = erc8004.agent_id_for_owner(w3, account.address)
-        if existing is not None:
-            print(f"Wallet ini sudah punya agentId {existing}. Skip.")
-            return
+        raw_id = os.getenv("AGENT_ID", "").strip()
+        agent_id = int(raw_id) if raw_id.isdigit() else None
+        if agent_id is None:
+            agent_id = erc8004.agent_id_for_owner(w3, account.address)
+        if agent_id is None:
+            # Belum terdaftar: mint dulu tanpa `registrations` (agentId belum ada).
+            doc = erc8004.build_registration(
+                name=args.name,
+                description=args.description,
+                endpoint=args.endpoint,
+                x402_support=True,
+            )
+            agent_id = erc8004.register(
+                w3, settings.private_key, erc8004.to_data_uri(doc),
+                settings.attribution_code,
+            )
+            print(f"Terdaftar sebagai agentId {agent_id}")
+            print(f"Simpan ke .env: AGENT_ID={agent_id}")
 
-        doc = erc8004.build_registration(
-            name=args.name,
-            description=args.description,
-            endpoint=args.endpoint,
-            x402_support=True,
-        )
-        uri = erc8004.to_data_uri(doc)
-        agent_id = erc8004.register(
-            w3, settings.private_key, uri, settings.attribution_code
-        )
-        print(f"Terdaftar sebagai agentId {agent_id}")
-
-        # Tambahkan registrations ke file, lalu update agentURI.
+        # Selalu perbarui agentURI dengan data terakhir + agentId.
         doc = erc8004.build_registration(
             name=args.name,
             description=args.description,
@@ -299,7 +305,6 @@ def main() -> None:
             settings.attribution_code,
         )
         print(f"agentURI diupdate: {tx}")
-        print(f"Simpan ke .env: AGENT_ID={agent_id}")
         return
 
 

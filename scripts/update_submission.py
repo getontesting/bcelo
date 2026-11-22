@@ -28,6 +28,10 @@ for bounty in BOUNTIES:
 
 BASE += [
     "--answer",
+    "x402 PayTo address="+'0x1B441d9002a7ED68e996aBE63bAd054802B2549B',
+    "--answer",
+    "Region=Indonesia",
+    "--answer",
     "Public X post=https://x.com/CryptoBits03/status/2123859111054029181",
     "--answer",
     "buy transaction hashes="

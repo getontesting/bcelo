@@ -47,8 +47,20 @@ Verify any tag with: `python -m src.cli verify <tx>`
 - Policy: spend cap 0.001 CELO/day, contract allowlist = the wallet itself,
   expiry 1 hour, revocable in one transaction.
 - Product review: `https://github.com/getontesting/bcelo/issues/1`
-- Note: revoke transaction was not obtainable — WebAuthn prompt did not resolve
-  in this environment. Wallet + session + policy are verified on-chain.
+- Note: the issue describes the **private-key** `grantSession` path failing at the
+  relay; we later succeeded with the **passkey** path via
+  `client.recoverFromPasskey({ rpId: 'docs.altana.network' })` on Celo, which produced
+  the wallet and session key above. Revoke transaction was not obtainable — the
+  WebAuthn prompt did not resolve in this environment. Wallet + session + policy
+  are verified on-chain.
+
+## ERC-8004 identity
+- agentId 10077, owner `0x2Ff10a4748902E82E82835Edef6d98c306e4ba38`
+- `tokenURI` (data URI, on-chain) updated to the real project name, description,
+  endpoint `https://github.com/getontesting/bcelo`, `x402Support: true`, and
+  `registrations.agentId = 10077`.
+- Update tx: `0x58330de18318988e6e79a5e3dd697c0c00ea134885c9c5e2da0aa86add30c7d9`
+  (tagged `celo_69fe50f9aa63`).
 
 ## Track 3 — Self Agent ID
 Not entered: no supported passport document available.
