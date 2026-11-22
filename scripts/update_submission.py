@@ -21,8 +21,22 @@ BOUNTIES = [
     "d7be31a0-9388-48bc-9943-1d32c697cb69",  # Altana product review (XP)
 ]
 
+DESCRIPTION = (
+    "Agent Celo mainnet untuk pekerjaan nyata M RIFKI TRI ADITYA (freelance web3 developer): "
+    "mengubah USD₮ menjadi stablecoin lokal lewat 5 koridor Textile FX RFQ "
+    "(IDRX, cNGN, wBRL, wCOP) lalu membayar penerima di luar tim — 15 transaksi "
+    "bertag celo_69fe50f9aa63 (agentId ERC-8004 10077). "
+    "Juga login ke website biasa lewat Agent Vault tanpa password, "
+    "membayar per-request via x402 (0xf72b3bf1... blok 83290930), "
+    "dan memanggil layanan pihak ketiga di usebuy.ai (0xaa6b2919..., $0.01 USDT). "
+    "Altana passkey wallet 0xBf39... dengan session key berscoped "
+    "(0xffa9945f..., cap 0.001 CELO/hari, expiry 1 jam). "
+    "Repo: https://github.com/getontesting/bcelo"
+)
+
 BASE: list[str] = ["npx.cmd", "--yes", "loopshouse", "project", "update",
-                   "--event", "agents-open-for-business"]
+                   "--event", "agents-open-for-business",
+                   "--description", DESCRIPTION]
 for bounty in BOUNTIES:
     BASE += ["--bounty-ids", bounty]
 
