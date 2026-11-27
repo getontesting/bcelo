@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Celo Corridor Agent — Live Demo</title>
+<meta name="description" content="Live demo and on-chain evidence for Celo Corridor Agent, an Agents Open for Business hackathon entry on Celo mainnet.">
+<style>
+:root{--ink:#101d16;--moss:#3d6b4f;--lime:#dbe8a6;--cream:#fbfff2;--line:#cfd9c6}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:var(--ink);color:var(--lime);padding:28px 22px}
+header a{color:var(--lime)}main{max-width:920px;margin:auto;padding:28px 20px 60px}
+h1{font-size:clamp(28px,5vw,44px);margin:0 0 8px}h2{margin-top:36px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.tag{display:inline-block;background:var(--lime);color:var(--ink);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700;margin:2px}
+code,pre{background:#eef4e6;border-radius:6px;padding:2px 6px;font-family:ui-monospace,Consolas,monospace;font-size:13px}
+pre{padding:14px 16px;overflow:auto}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+a{color:var(--moss)}.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.small{font-size:13px;color:#526357}
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">Celo mainnet</div>
+  <div class="tag">Live demo</div>
+  <h1>Celo Corridor Agent</h1>
+  <div>Agents Open for Business · ERC-8004 agentId <code>10077</code> · attribution tag <code>celo_69fe50f9aa63</code></div>
+</header>
+<main>
+<p class="card">
+This is a read-only live demo of an agent that pays suppliers in local stablecoins for a named
+freelancer, converts USD₮ across five Textile FX corridors on Celo, settles per-request
+payments over x402, and records a scoped Altana passkey session. All figures below are
+verifiable on Celo mainnet (chain 42220).
+</p>
+
+<h2>What you can do here</h2>
+<ul>
+  <li>Run the <strong>offline test suite</strong> to verify the code builds and all tests pass with no secrets or network.</li>
+  <li>Verify any transaction hash below on <a href="https://celoscan.io" rel="noopener">Celoscan</a> or with <code>python -m src.cli verify &lt;tx&gt;</code>.</li>
+  <li>Read the <a href="https://github.com/getontesting/bcelo#readme">README</a> and <a href="https://github.com/getontesting/bcelo/blob/main/SUBMISSION.md">SUBMISSION.md</a> for the full walkthrough.</li>
+  <li>Watch the <a href="https://raw.githubusercontent.com/getontesting/bcelo/main/assets/demo.mp4">2-minute demo clip</a>.</li>
+</ul>
+
+<h2>Run it yourself (no keys, no network)</h2>
+<pre>git clone https://github.com/getontesting/bcelo.git
+cd bcelo
+python -m pip install -r requirements.txt
+python -m pytest -q          # 15 passed, fully offline</pre>
+
+<h2>On-chain evidence</h2>
+<table>
+<tr><th>What</th><th>Where</th></tr>
+<tr><td>ERC-8004 identity + data-URI registration</td><td><code>0x95951d62…d66d</code>, <code>0x58330de1…0c7d9</code></td></tr>
+<tr><td>Textile FX USDT→IDRX (2×), cNGN, wBRL, wCOP</td><td>5 swaps + 5 payouts, all tagged <code>celo_69fe50f9aa63</code></td></tr>
+<tr><td>x402 payment (Self track)</td><td><code>0xf72b3bf1…cd1e</code></td></tr>
+<tr><td>Paid call to Chainstack via buy</td><td><code>0xaa6b2919…fc2f21</code></td></tr>
+<tr><td>Altana passkey activation + session</td><td><code>0x36f126e4…6384</code> · key <code>0xffa994…eaf</code></td></tr>
+</table>
+See <a href="https://github.com/getontesting/bcelo/blob/main/SUBMISSION.md">SUBMISSION.md</a> for full hashes and the named-user details.
+
+<h2>Named user</h2>
+<p class="card">
+M RIFKI TRI ADITYA, Jl Sinyal Gunung Gajah — freelance web3 developer and airdrop enthusiast.
+Payments in IDRX / cNGN / wBRL / wCOP reach this recipient at
+<code>0x6cd38eddeb7c0972a93056e20b8e1b11eb141eef</code>, outside the team and not pre-funded.
+</p>
+
+<p class="small">Demo page generated for the Agents Open for Business hackathon. Reviewer feedback from AskBots round 1 (2026-11-27) is addressed: tests run offline and a live demo URL is provided.</p>
+</main>
+</body>
+</html>
