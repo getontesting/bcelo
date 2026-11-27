@@ -21,6 +21,10 @@ BOUNTIES = [
     "d7be31a0-9388-48bc-9943-1d32c697cb69",  # Altana product review (XP)
 ]
 
+DEMO_URL = (
+    "https://cdn.jsdelivr.net/gh/getontesting/bcelo@9716d09/docs/index.html"
+)
+
 DESCRIPTION = (
     "Agent Celo mainnet untuk pekerjaan nyata M RIFKI TRI ADITYA (freelance web3 developer): "
     "mengubah USD₮ menjadi stablecoin lokal lewat 5 koridor Textile FX RFQ "
@@ -36,6 +40,7 @@ DESCRIPTION = (
 
 BASE: list[str] = ["npx.cmd", "--yes", "loopshouse", "project", "update",
                    "--event", "agents-open-for-business",
+                   "--demo-url", DEMO_URL,
                    "--description", DESCRIPTION]
 for bounty in BOUNTIES:
     BASE += ["--bounty-ids", bounty]
