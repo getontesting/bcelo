@@ -22,7 +22,8 @@ BOUNTIES = [
 ]
 
 DEMO_URL = (
-    "https://cdn.jsdelivr.net/gh/getontesting/bcelo@9716d09/docs/index.html"
+    "https://htmlpreview.github.io/?https://github.com/getontesting/bcelo/"
+    "blob/9716d09/docs/index.html"
 )
 
 DESCRIPTION = (
