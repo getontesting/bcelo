@@ -21,10 +21,7 @@ BOUNTIES = [
     "d7be31a0-9388-48bc-9943-1d32c697cb69",  # Altana product review (XP)
 ]
 
-DEMO_URL = (
-    "https://htmlpreview.github.io/?https://github.com/getontesting/bcelo/"
-    "blob/9716d09/docs/index.html"
-)
+DEMO_URL = "https://celo-corridor-agent-demo.onrender.com/"
 
 DESCRIPTION = (
     "Agent Celo mainnet untuk pekerjaan nyata M RIFKI TRI ADITYA (freelance web3 developer): "

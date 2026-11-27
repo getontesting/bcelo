@@ -1,6 +1,6 @@
 # Agents Open for Business — entry (Celo)
 
-**Live demo:** https://htmlpreview.github.io/?https://github.com/getontesting/bcelo/blob/9716d09/docs/index.html
+**Live demo:** https://celo-corridor-agent-demo.onrender.com/
 
 Entry hackathon Loops House. Karena tanpa paspor, **Track 3 (Self Agent ID) tidak
 diikuti**. Yang dikerjakan:
