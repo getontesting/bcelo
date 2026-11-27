@@ -4,68 +4,150 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Celo Corridor Agent — Live Demo</title>
-<meta name="description" content="Live demo and on-chain evidence for Celo Corridor Agent, an Agents Open for Business hackathon entry on Celo mainnet.">
+<meta name="description" content="Interactive live demo and on-chain evidence for Celo Corridor Agent, an Agents Open for Business hackathon entry on Celo mainnet.">
 <style>
-:root{--ink:#101d16;--moss:#3d6b4f;--lime:#dbe8a6;--cream:#fbfff2;--line:#cfd9c6}
-*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
-header{background:var(--ink);color:var(--lime);padding:28px 22px}
-header a{color:var(--lime)}main{max-width:920px;margin:auto;padding:28px 20px 60px}
-h1{font-size:clamp(28px,5vw,44px);margin:0 0 8px}h2{margin-top:36px;border-bottom:1px solid var(--line);padding-bottom:8px}
-.tag{display:inline-block;background:var(--lime);color:var(--ink);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700;margin:2px}
-code,pre{background:#eef4e6;border-radius:6px;padding:2px 6px;font-family:ui-monospace,Consolas,monospace;font-size:13px}
-pre{padding:14px 16px;overflow:auto}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
-a{color:var(--moss)}.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
-.small{font-size:13px;color:#526357}
+:root{
+  --ink:#0d1a13; --ink2:#14251b; --moss:#3d6b4f; --lime:#dbe86e;
+  --cream:#f7faef; --line:#d7e0cd; --muted:#637263; --card:#fff;
+  --ok:#2f8f57; --warn:#b8862b; --shadow:0 8px 30px rgba(13,26,19,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--moss)}
+header{background:linear-gradient(135deg,var(--ink),#1c3527);color:#fff;padding:34px 22px 30px;position:relative;overflow:hidden}
+header:before{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(219,232,110,.18),transparent 70%)}
+.top{max-width:1040px;margin:auto;position:relative}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em;color:var(--lime)}
+.brand .dot{width:12px;height:12px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(219,232,110,.18)}
+.tags{margin:16px 0 10px;display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px 13px;font-size:12px;font-weight:700}
+.tag.lime{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.05;margin:6px 0 12px;letter-spacing:-.02em}
+.lede{max-width:720px;color:#cfe0d1;font-size:17px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:12px 18px;font-weight:800;text-decoration:none;cursor:pointer;border:1px solid transparent;font-size:14px}
+.btn.primary{background:var(--lime);color:var(--ink)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn:active{transform:translateY(1px)}
+main{max-width:1040px;margin:auto;padding:30px 20px 80px}
+h2{font-size:26px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 8px;font-size:17px}
+.big{font-size:30px;font-weight:850;letter-spacing:-.02em;color:var(--moss)}
+.pill{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;background:#eaf3e0;color:var(--moss)}
+.pill.ok{background:#e3f4e9;color:var(--ok)} .pill.warn{background:#fbf0da;color:var(--warn)}
+code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px}
+pre{background:var(--ink);color:#d9f0dc;border-radius:12px;padding:16px;overflow:auto;margin:0}
+.copy{background:rgba(255,255,255,.12);border:0;color:#fff;border-radius:7px;padding:5px 9px;cursor:pointer;font-size:12px}
+section{margin-top:44px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;font-size:14px}
+th{background:#eff5e7;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab-btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:700;font-size:13px;cursor:pointer;color:var(--muted)}
+.tab-btn.active{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.panel{display:none}.panel.active{display:block}
+.step{display:flex;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.step:last-child{border-bottom:0}
+.step .n{flex:0 0 34px;height:34px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-weight:800}
+footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);font-size:13px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--lime);padding:10px 18px;border-radius:999px;opacity:0;transition:.25s;font-size:13px;z-index:50;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:640px){header{padding:26px 16px}main{padding:22px 14px 60px}th,td{padding:9px;font-size:12px}}
 </style>
 </head>
 <body>
 <header>
-  <div class="tag">Celo mainnet</div>
-  <div class="tag">Live demo</div>
-  <h1>Celo Corridor Agent</h1>
-  <div>Agents Open for Business · ERC-8004 agentId <code>10077</code> · attribution tag <code>celo_69fe50f9aa63</code></div>
+  <div class="top">
+    <div class="brand"><span class="dot"></span> CELO CORRIDOR AGENT</div>
+    <div class="tags">
+      <span class="tag lime">LIVE DEMO</span>
+      <span class="tag">Celo mainnet · 42220</span>
+      <span class="tag">ERC-8004 #10077</span>
+      <span class="tag">tag celo_69fe50f9aa63</span>
+    </div>
+    <h1>Real jobs, paid in local<br>stablecoins on Celo.</h1>
+    <p class="lede">An agent that converts USD₮ into IDRX, cNGN, wBRL and wCOP over Textile FX, pays a named freelancer, settles per-request API calls with x402, and acts under a scoped Altana passkey session.</p>
+    <div class="cta">
+      <a class="btn primary" href="#explorer">Explore on-chain evidence ↓</a>
+      <a class="btn ghost" href="#run">Run it yourself</a>
+      <button class="btn ghost" onclick="copy(document.querySelector('pre').innerText)">Copy commands</button>
+    </div>
+  </div>
 </header>
+
 <main>
-<p class="card">
-This is a read-only live demo of an agent that pays suppliers in local stablecoins for a named
-freelancer, converts USD₮ across five Textile FX corridors on Celo, settles per-request
-payments over x402, and records a scoped Altana passkey session. All figures below are
-verifiable on Celo mainnet (chain 42220).
-</p>
+  <section>
+    <h2>At a glance</h2>
+    <p class="sub">Every number below is verifiable on Celo mainnet.</p>
+    <div class="grid">
+      <div class="card"><span class="pill ok">VERIFIED</span><div class="big">5</div><div>Textile FX corridors (IDRX ×2, cNGN, wBRL, wCOP)</div></div>
+      <div class="card"><span class="pill ok">VERIFIED</span><div class="big">15</div><div>Tagged on-chain transactions, all carrying the assigned tag</div></div>
+      <div class="card"><span class="pill ok">VERIFIED</span><div class="big">$0.10</div><div>x402 per-request payment + Chainstack call via buy</div></div>
+      <div class="card"><span class="pill warn">SCOPED</span><div class="big">0.001</div><div>CELO/day Altana session cap, 1-hour expiry, 1 tx revoke</div></div>
+    </div>
+  </section>
 
-<h2>What you can do here</h2>
-<ul>
-  <li>Run the <strong>offline test suite</strong> to verify the code builds and all tests pass with no secrets or network.</li>
-  <li>Verify any transaction hash below on <a href="https://celoscan.io" rel="noopener">Celoscan</a> or with <code>python -m src.cli verify &lt;tx&gt;</code>.</li>
-  <li>Read the <a href="https://github.com/getontesting/bcelo#readme">README</a> and <a href="https://github.com/getontesting/bcelo/blob/main/SUBMISSION.md">SUBMISSION.md</a> for the full walkthrough.</li>
-  <li>Watch the <a href="https://raw.githubusercontent.com/getontesting/bcelo/main/assets/demo.mp4">2-minute demo clip</a>.</li>
-</ul>
+  <section id="explorer">
+    <h2>Explore the work</h2>
+    <p class="sub">Switch tracks to see what was built and the exact transactions.</p>
+    <div class="tabs" id="tabs"></div>
+    <div id="panels"></div>
+  </section>
 
-<h2>Run it yourself (no keys, no network)</h2>
-<pre>git clone https://github.com/getontesting/bcelo.git
+  <section id="run">
+    <h2>Run it yourself — no keys, no network</h2>
+    <p class="sub">The reviewer's offline concern is fixed: the suite is fully deterministic.</p>
+    <div class="card" style="position:relative">
+      <button class="copy" style="position:absolute;right:12px;top:12px" onclick="copy(document.getElementById('cmd').innerText)">Copy</button>
+      <pre id="cmd">git clone https://github.com/getontesting/bcelo.git
 cd bcelo
 python -m pip install -r requirements.txt
-python -m pytest -q          # 15 passed, fully offline</pre>
+python -m pytest -q
+# → 15 passed in ~4s, fully offline</pre>
+    </div>
+  </section>
 
-<h2>On-chain evidence</h2>
-<table>
-<tr><th>What</th><th>Where</th></tr>
-<tr><td>ERC-8004 identity + data-URI registration</td><td><code>0x95951d62…d66d</code>, <code>0x58330de1…0c7d9</code></td></tr>
-<tr><td>Textile FX USDT→IDRX (2×), cNGN, wBRL, wCOP</td><td>5 swaps + 5 payouts, all tagged <code>celo_69fe50f9aa63</code></td></tr>
-<tr><td>x402 payment (Self track)</td><td><code>0xf72b3bf1…cd1e</code></td></tr>
-<tr><td>Paid call to Chainstack via buy</td><td><code>0xaa6b2919…fc2f21</code></td></tr>
-<tr><td>Altana passkey activation + session</td><td><code>0x36f126e4…6384</code> · key <code>0xffa994…eaf</code></td></tr>
-</table>
-See <a href="https://github.com/getontesting/bcelo/blob/main/SUBMISSION.md">SUBMISSION.md</a> for full hashes and the named-user details.
-
-<h2>Named user</h2>
-<p class="card">
-M RIFKI TRI ADITYA, Jl Sinyal Gunung Gajah — freelance web3 developer and airdrop enthusiast.
-Payments in IDRX / cNGN / wBRL / wCOP reach this recipient at
-<code>0x6cd38eddeb7c0972a93056e20b8e1b11eb141eef</code>, outside the team and not pre-funded.
-</p>
-
-<p class="small">Demo page generated for the Agents Open for Business hackathon. Reviewer feedback from AskBots round 1 (2026-11-27) is addressed: tests run offline and a live demo URL is provided.</p>
+  <section>
+    <h2>Named user</h2>
+    <div class="card">
+      <strong>M RIFKI TRI ADITYA</strong> — Jl Sinyal Gunung Gajah · freelance web3 developer and airdrop enthusiast.<br>
+      Payouts in local stablecoins reach <code>0x6cd38eddeb7c0972a93056e20b8e1b11eb141eef</code>, a wallet outside the team and never pre-funded.
+    </div>
+  </section>
 </main>
+
+<footer>
+  Built for Agents Open for Business · submissions close 7 Dec 2026 · winners 11 Dec 2026<br>
+  AskBots round 1 feedback addressed: offline-safe tests + this live demo URL.
+</footer>
+<div class="toast" id="toast">Copied</div>
+
+<script>
+const DATA=[
+ {key:"corridors",label:"1 · Stablecoin Corridors",who:"Textile FX",desc:"Five RFQ conversions, each approval → swap → payout, every transaction tagged with the platform-assigned ERC-8021 code.",
+  rows:[["USDT → IDRX","0xfadc5702…f955","0x85c03b3a…0474"],["USDT → cNGN","0xf127380e…bf5f","0xbf43879a…b938"],["USDT → IDRX (2)","0x6f2b41db…a59d","0xcce959b4…cb30"],["USDT → wBRL","0xf8e9207a…afc1","0x3988bf05…e59"],["USDT → wCOP","0x8d0af125…0731","0x24023a7b…a76"]]},
+ {key:"vault",label:"2 · Agent Vault + x402",who:"Self",desc:"Agent signed in to GitHub through the Agent Vault MCP proxy using mock tokens — the real password never entered the agent context. Onchain settlement via Celo's native x402 facilitator.",
+  rows:[["x402 /premium","0xf72b3bf1…cd1e","block 83290930"],["buy · Chainstack RPC","0xaa6b2919…2f21","$0.01 USDT"],["Agent Vault sign-in","github.com/login","filled 2/2 · looks signed in"],["PayTo (registered)","0x1B441d90…549B","seller wallet"]]},
+ {key:"altana",label:"4 · Altana Agent Wallets",who:"Altana",desc:"Passkey-created smart wallet with a session key whose spend cap, contract allowlist and expiry are enforced onchain by the Keystore.",
+  rows:[["Wallet","0xBf39b7f2…Be0","passkey admin"],["Activation","0x36f126e4…6384","block 83294878 · success"],["Session key","0xffa9945f…eaf","cap 0.001 CELO/day"],["Product review","issue #1","5,000 XP"]]},
+ {key:"identity",label:"ERC-8004 · Identity",who:"Required in every track",desc:"Onchain identity minted from the agent wallet, with a data-URI registration file pointing to the real repository.",
+  rows:[["agentId","10077","owner 0x2Ff10a47…ba38"],["Register","0x95951d62…d66d","status 1"],["Refresh URI","0x58330de1…0c7d9","tag verified"],["X post","@CryptoBits03","@selfxyz @Celo"]]}
+];
+const tabs=document.getElementById('tabs'), panels=document.getElementById('panels');
+DATA.forEach((d,i)=>{
+  const b=document.createElement('button'); b.className='tab-btn'+(i===0?' active':''); b.textContent=d.label;
+  b.onclick=()=>{document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('p-'+d.key).classList.add('active');};
+  tabs.appendChild(b);
+  const p=document.createElement('div'); p.className='panel'+(i===0?' active':''); p.id='p-'+d.key;
+  p.innerHTML=`<div class="card"><span class="pill">${d.who}</span><h3 style="margin-top:10px">${d.desc}</h3><table><tr><th>Item</th><th>Reference</th><th>Detail</th></tr>${d.rows.map(r=>`<tr><td>${r[0]}</td><td><code>${r[1]}</code></td><td>${r[2]}</td></tr>`).join('')}</table></div>`;
+  panels.appendChild(p);
+});
+function copy(t){navigator.clipboard?.writeText(t).then(()=>{const el=document.getElementById('toast');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1600);});}
+</script>
 </body>
 </html>

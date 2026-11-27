@@ -1,0 +1,11 @@
+services:
+  - type: static
+    name: celo-corridor-agent-demo
+    runtime: static
+    plan: free
+    buildCommand: ""
+    staticPublishPath: ./docs
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
